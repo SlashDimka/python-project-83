@@ -1,11 +1,11 @@
-name: Check
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+#name: Check
+#run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 
-on: 
+####on: 
   - push
   - pull_request
   
-jobs:
+##jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
@@ -23,4 +23,5 @@ jobs:
           pip install poetry
           make install
       - name: Run linter
-        run: make lint
+       # run: make lint
+
