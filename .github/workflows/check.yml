@@ -1,11 +1,11 @@
-#name: Check
-#run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+name: Check
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 
-####on: 
+on: 
   - push
   - pull_request
   
-##jobs:
+jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
@@ -17,11 +17,11 @@
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-        # make depends on poetry
+          make depends on poetry
       - name: Install dependencies
         run: |
           pip install poetry
           make install
       - name: Run linter
-       # run: make lint
+        run: make lint
 
