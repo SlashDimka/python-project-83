@@ -8,7 +8,7 @@ build:
 build-db: db-drop db-create schema-data-load
 
 db-start:
-		sudo service postgresql start >./database/logfile 2>&1 &
+		sudo service postgresql start
 
 db-status:
 		sudo service postgresql status
@@ -43,8 +43,7 @@ db-dump:
 		pg_dump -h localhost -d third-project -U ypekatoros -p 5432 -W -Ft > third-project-db.dump
 
 db-railway-upload:
-		pg_restore -h containers-us-west-103.railway.app -U postgres -p 6091 -d railway -W -Ft third-project-db.dump
-zYE4VOwi9WwSrUW1AJnS
+		pg_restore -h containers-us-west-103.railway.app -U postgres -p 6091 -d railway -W -Ft third-project-db.dumpzYE4VOwi9WwSrUW1AJnS
 dev:
 		poetry run flask --app page_analyzer:app run
 
