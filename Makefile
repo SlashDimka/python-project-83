@@ -1,7 +1,3 @@
-install:
-		poetry install
-
-# возможно не нужна команда
 build:
 		poetry build
 
@@ -42,21 +38,7 @@ db-show-log:
 
 dev:
 		poetry run flask --app page_analyzer:app run
-
-PORT ?= 8000
-start:
-		poetry run gunicorn -w 5 -b 0.0.0.0:$(PORT) page_analyzer:app
-
-lint:
-		{ \
-    	poetry run flake8 page_analyzer;\
-		poetry run flake8 tests;\
-    	}
-
-test:
-		poetry run pytest
-
-tests-cov:
+ests-cov:
 		poetry run pytest --cov=page_analyzer --cov-report xml
 
 show-active-ports:
