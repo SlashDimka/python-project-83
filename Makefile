@@ -38,7 +38,12 @@ db-show-log:
 
 dev:
 		poetry run flask --app page_analyzer:app run
-ests-cov:
+
+lint:
+    		poetry run flake8 page_analyzer
+    		poetry run flake8 tests
+
+tests-cov:
 		poetry run pytest --cov=page_analyzer --cov-report xml
 
 show-active-ports:
