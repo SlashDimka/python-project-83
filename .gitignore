@@ -3,6 +3,7 @@ __pycache__
 dist/
 *.pyc
 .venv/
+db-project.dump
 .coverage
 coverage.xml
 .pytest_cache/

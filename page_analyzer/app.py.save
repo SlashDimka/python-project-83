@@ -71,8 +71,6 @@ def show_urls():
             result = curs.fetchall()
 
     return render_template(
-#Expand All
-	#@@ -75,14 +83,31 @@ def show_urls():
 
 @app.route('/urls/<id>')
 def show_url(id):

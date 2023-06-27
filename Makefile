@@ -1,7 +1,8 @@
-build:
-	poetry build
+install:
+	poetry install
 
-build-db: db-drop db-create schema-data-load
+build-db:
+	db-drop db-create schema-data-load
 
 db-start:
 	sudo service postgresql start >./database/logfile 2>&1 &
@@ -28,7 +29,8 @@ dbs-show:
 db-connect:
 	psql -d third-project
 
-dev-setup: db-reset schema-data-load
+dev-setup:
+	db-reset schema-data-load
 
 schema-data-load:
 	psql third-project < database.sql
@@ -37,10 +39,10 @@ db-show-log:
 	vim /var/log/postgresql/postgresql-14-main.log
 
 db-dump:
-	pg_dump -h localhost -d third-project -U ypekatoros -p 5432 -W -Ft > third-project-db.dump
+	pg_dump -h localhost -d third-project -U ypekatoros -W -Ft > db-project.dump
 
-db-railway-upload:
-	pg_restore -h containers-us-west-103.railway.app -U postgres -p 6091 -d railway -W -Ft third-project-db.dump
+db-railway-update:
+	pg_restore -U postgres -h containers-us-west-148.railway.app -p 7219 -W -Ft -d railway db-project.dump
 
 dev:
 	poetry run flask --app page_analyzer:app run
