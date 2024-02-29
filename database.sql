@@ -1,0 +1,8 @@
+
+DROP TABLE IF EXISTS urls;
+GRANT CREATE ON SCHEMA public TO dmitrii;
+CREATE TABLE urls (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  created_at DATE NOT NULL
+);
