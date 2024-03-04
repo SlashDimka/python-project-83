@@ -26,6 +26,8 @@ def create_app(config_dict):
         app.config[parameter] = config_dict[parameter]
     return app
 app = create_app(server_config)
+
+
 @app.route('/')
 def index():
     messages = get_flashed_messages(with_categories=True)
@@ -74,6 +76,7 @@ def show_urls():
         '/urls.html',
         data=result,
     )
+
 
 @app.route('/urls/<id>')
 def show_url(id):

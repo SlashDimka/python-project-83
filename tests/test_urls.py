@@ -1,5 +1,7 @@
 from unittest import mock
 DATABASE_URL = 'TEST_URL'
+
+
 def test_urls(client, test_app):
     with mock.patch('psycopg2.connect', autospec=True) as mock_connect:
         mock_con_cm = mock_connect.return_value  # result of psycopg2.connect(**connection_stuff)
