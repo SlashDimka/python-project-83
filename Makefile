@@ -39,6 +39,12 @@ schema-data-load:
 db-show-log:
 		vim /var/log/postgresql/postgresql-14-main.log
 
+db-dump:
+		pg_dump -h localhost -d third-project -U dmitrii -W -Ft > db-project.dump
+
+db-render-update:
+		pg_restore -h dpg-cm6sdo7qd2ns73f07990-a.frankfurt-postgres.render.com -U dmitrii -d database_4p6v
+
 dev:
 		poetry run flask --app page_analyzer:app run
 PORT ?= 8000
