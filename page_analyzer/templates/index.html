@@ -8,9 +8,7 @@
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <title>Анализатор страниц</title>
   </head>
-
   <body class="min-vh-100 d-flex flex-column">
-
     <header class="flex-shrink-0">
       <nav class="navbar navbar-expand-md navbar-dark bg-dark px-3">
         <a class="navbar-brand" href="{{ url_for('index') }}">Анализатор страниц</a>
@@ -25,7 +23,6 @@
         </div>
       </nav>
     </header>
-
     {% if messages %}
       {% for category, message in messages %}
         <div class="alert alert-{{ category }}">{{ message }}</div>
@@ -41,7 +38,7 @@
             <form action="{{ url_for('add_url') }}" method="post" required>
               <div class="row">
                 <div class="col-12 col-xl-8 mb-3">
-                  <input type="text" name="url" placeholder="https://www.example.com"value="" class="d-flex form-control form-control-lg">
+                  <input type="text" name="url" placeholder="https://www.example.com" value="" class="d-flex form-control form-control-lg">
                 </div>
                 <div class="col-xl-4 text-center">
                   <input type="submit" class="btn btn-primary btn-lg ms-3 px-5 text-uppercase mx-3" value="Проверить">
@@ -52,7 +49,6 @@
         </div>
       </div>
     </main>
-
     <footer class="border-top py-3 mt-5 flex-shrink-0">
       <div class="container-lg">
         <div class="text-center">
@@ -65,4 +61,3 @@
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
 </html>
-#gdgf

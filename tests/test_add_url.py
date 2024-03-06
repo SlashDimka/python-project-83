@@ -1,11 +1,12 @@
 from unittest import mock
 import datetime
-
 DATABASE_URL = 'TEST_URL'
 
 
 def test_add_url(client, test_app):
-    with mock.patch('psycopg2.connect', autospec=True) as mock_connect:
+    with mock.patch('psycopg2.connect', autospec=True) as mock_connect, \
+         mock.patch('requests.get') as mock_external_req:
+        mock_external_req('https://google.com').status_code = 200
         mock_con_cm = mock_connect.return_value  # result of psycopg2.connect(**connection_stuff)
         mock_con = mock_con_cm.__enter__.return_value  # object assigned to con in with ... as con
         mock_cur_cm = mock_con.cursor.return_value  # result of con.cursor(cursor_factory=DictCursor)
@@ -26,7 +27,6 @@ def test_add_url(client, test_app):
         flash_mes = 'Страница успешно добавлена'.encode("utf-8", "ignore")
         assert flash_mes in response.data
         assert today.encode("utf-8", "ignore") in response.data
-
         mock_cur.fetchone.return_value = ('1', "https://asus.com", '26-01-2023')
         response = client.post('/', data={
             'url': "https://asus.com",
@@ -37,9 +37,18 @@ def test_add_url(client, test_app):
         data1 = "https://asus.com".encode("utf-8", "ignore")
         assert data1 in response.data
         assert flash_mes in response.data
-
         response = client.post('/', data={
             'url': "google.com",
         }, follow_redirects=True)
         flash_mes = 'Некорректный URL'.encode("utf-8", "ignore")
         assert flash_mes in response.data
+
+        mock_external_req.side_effect = Exception('URLError')
+        response = client.post('/', data={
+            'url': "https://google.com",
+        }, follow_redirects=True)
+        assert response.status_code == 200
+        flash_mess1 = 'Страница успешно добавлена'.encode("utf-8", "ignore")
+        flash_mess2 = 'Произошла ошибка при проверке'.encode("utf-8", "ignore")
+        assert flash_mess1 in response.data
+        assert flash_mess2 in response.data

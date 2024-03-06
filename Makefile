@@ -7,7 +7,7 @@ build:
 build-db: db-drop db-create schema-data-load
 
 db-start:
-		sudo service postgresql start >./database/logfile 2>&1 &
+		sudo service postgresql start
 
 db-status:
 		sudo service postgresql status

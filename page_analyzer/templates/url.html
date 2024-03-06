@@ -23,13 +23,11 @@
                 </div>
             </nav>
         </header>
-
         {% if messages %}
         {% for category, message in messages %}
           <div class="alert alert-{{ category }}">{{ message }}</div>
         {% endfor %}
         {% endif %}
-
         <main class="flex-grow-1">
             <div class="container-lg mt-3">
               <h1>Сайт: {{ name }}</h1>
@@ -55,7 +53,8 @@
           </div>
 
             <h2 class="mt-5 mb-3">Проверки</h2>
-            <form method="post" action="/urls/{{ url_id }}/checks">
+            <form method="post" action="/urls/{{ url_id }}/checks" >
+            <input type="hidden" name="name" value="{{ name }}">
             <input type="submit" class="btn btn-primary" value="Запустить проверку">
             </form>
 
